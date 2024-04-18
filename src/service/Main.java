@@ -6,18 +6,23 @@ import java.util.Scanner;
 import model.MonthlyBill;
 import model.WeeklyCallCostStrategy;
 import model.RegionalCallCostStrategy;
-import model.CallData;
+import model.Call;
 import model.CallType;
 
 public class Main {
+
+    public static final double WEEKDAY_PEAK_LOCAL_CALL_COST = (double) 0.2;
+    public static final double WEEKDAY_OFF_PEAK_LOCAL_CALL_COST = (double) 0.1;
+    public static final double WEEKEND_LOCAL_CALL_COST = (double) 0.1;
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         MonthlyBill bill = new MonthlyBill(10); // Costo básico mensual
-        HashMap<String, Float> stateRates = new HashMap<String, Float>();
-        stateRates.put("IOWA", (float) (0.2));
+        HashMap<String, Double> stateRates = new HashMap<String, Double>();
+        stateRates.put("IOWA", (double) (0.2));
 
-        HashMap<String, Float> countryRates = new HashMap<String, Float>();
-        countryRates.put("US", (float) (0.5));
+        HashMap<String, Double> countryRates = new HashMap<String, Double>();
+        countryRates.put("US", (double) (0.5));
 
         while (true) {
             System.out.println("----------------------------------------------");
@@ -37,22 +42,22 @@ public class Main {
                     System.out.println("Enter the duration of the call (minutes):");
                     int duration = scanner.nextInt();
                     scanner.nextLine();
-                    bill.setCallStrategy(new WeeklyCallCostStrategy());
-                    bill.addCall(new CallData(CallType.LOCAL, duration, Constants.WEEKDAY_PEAK_LOCAL_CALL_COST));
+                    bill.addCall(new Call(CallType.LOCAL, new WeeklyCallCostStrategy(), duration,
+                            WEEKDAY_PEAK_LOCAL_CALL_COST));
                     break;
                 case 2:
                     System.out.println("Enter the duration of the call (minutes):");
                     int duration1 = scanner.nextInt();
                     scanner.nextLine();
-                    bill.setCallStrategy(new WeeklyCallCostStrategy());
-                    bill.addCall(new CallData(CallType.LOCAL, duration1, Constants.WEEKDAY_OFF_PEAK_LOCAL_CALL_COST));
+                    bill.addCall(new Call(CallType.LOCAL, new WeeklyCallCostStrategy(), duration1,
+                            WEEKDAY_OFF_PEAK_LOCAL_CALL_COST));
                     break;
                 case 3:
                     System.out.println("Enter the duration of the call (minutes):");
                     int duration2 = scanner.nextInt();
                     scanner.nextLine();
-                    bill.setCallStrategy(new WeeklyCallCostStrategy());
-                    bill.addCall(new CallData(CallType.LOCAL, duration2, Constants.WEEKEND_LOCAL_CALL_COST));
+                    bill.addCall(new Call(CallType.LOCAL, new WeeklyCallCostStrategy(), duration2,
+                            WEEKEND_LOCAL_CALL_COST));
                     break;
                 case 4:
                     System.out.println("Enter the duration of the call (minutes):");
@@ -60,8 +65,8 @@ public class Main {
                     scanner.nextLine();
                     System.out.println("Enter the country:");
                     String country = scanner.nextLine();
-                    bill.setCallStrategy(new RegionalCallCostStrategy());
-                    bill.addCall(new CallData(CallType.NATIONAL, duration3, country, countryRates));
+                    bill.addCall(new Call(CallType.NATIONAL, new RegionalCallCostStrategy(), duration3, country,
+                            countryRates));
                     break;
                 case 5:
                     System.out.println("Enter the duration of the call (minutes):");
@@ -69,8 +74,8 @@ public class Main {
                     scanner.nextLine();
                     System.out.println("Enter the province:");
                     String province = scanner.nextLine();
-                    bill.setCallStrategy(new RegionalCallCostStrategy());
-                    bill.addCall(new CallData(CallType.INTERNATIONAL, duration4, province, stateRates));
+                    bill.addCall(new Call(CallType.INTERNATIONAL, new RegionalCallCostStrategy(), duration4, province,
+                            stateRates));
                     break;
                 default:
                     System.out.println("Invalid Option.");

@@ -3,35 +3,29 @@ package model;
 import java.util.HashMap;
 
 public class MonthlyBill {
-    private float basicMonthlyFee;
-    HashMap<CallType, Float> callCosts;
-    private CallStrategy callStrategy;
+    private double basicMonthlyFee;
+    HashMap<CallType, Double> callCosts;
 
-    public MonthlyBill(float basicMonthlyFee) {
+    public MonthlyBill(double basicMonthlyFee) {
         this.basicMonthlyFee = basicMonthlyFee;
-        this.callCosts = new HashMap<CallType, Float>();
-        this.callCosts.put(CallType.LOCAL, (float) (0));
-        this.callCosts.put(CallType.INTERNATIONAL, (float) (0));
-        this.callCosts.put(CallType.NATIONAL, (float) (0));
+        this.callCosts = new HashMap<CallType, Double>();
+        this.callCosts.put(CallType.LOCAL, (double) (0));
+        this.callCosts.put(CallType.INTERNATIONAL, (double) (0));
+        this.callCosts.put(CallType.NATIONAL, (double) (0));
     }
 
-    public void setCallStrategy(CallStrategy call) {
-        this.callStrategy = call;
-
-    }
-
-    public void addCall(CallData callData) {
-        Float cost = callCosts.get(callData.getCallType());
-        Float newCost = cost + this.callStrategy.calculateCost(callData);
-        callCosts.put(callData.getCallType(), newCost);
+    public void addCall(Call call) {
+        double cost = callCosts.get(call.getCallType());
+        double newCost = cost + call.getCost();
+        callCosts.put(call.getCallType(), newCost);
     }
 
     public void generateBill() {
 
-        float localCost = callCosts.get(CallType.LOCAL);
-        float nationalCost = callCosts.get(CallType.NATIONAL);
-        float internationalCost = callCosts.get(CallType.INTERNATIONAL);
-        float totalCost = basicMonthlyFee + localCost + nationalCost + internationalCost;
+        double localCost = callCosts.get(CallType.LOCAL);
+        double nationalCost = callCosts.get(CallType.NATIONAL);
+        double internationalCost = callCosts.get(CallType.INTERNATIONAL);
+        double totalCost = basicMonthlyFee + localCost + nationalCost + internationalCost;
 
         System.out.println("-----------------Monthly Bill-------------------");
         System.out.printf("Monthly fee: %.2f\n", basicMonthlyFee);

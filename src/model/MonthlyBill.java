@@ -6,12 +6,6 @@ public class MonthlyBill {
     private float basicMonthlyFee;
     HashMap<CallType, Float> callCosts;
     private CallStrategy callStrategy;
-    // private float localCost;
-    // private float nationalCost;
-    // private float internationalCost;
-    // private LocalCall localCallStrategy;
-    // private LongDistanceCall nationalCallStrategy;
-    // private LongDistanceCall internationalCallStrategy;
 
     public MonthlyBill(float basicMonthlyFee) {
         this.basicMonthlyFee = basicMonthlyFee;
@@ -26,39 +20,11 @@ public class MonthlyBill {
 
     }
 
-    public void addCall(int duration) {
-        Float cost = callCosts.get(this.callStrategy.getCallType());
-        Float newCost = cost + this.callStrategy.calculateCost(duration);
-        callCosts.put(this.callStrategy.getCallType(), newCost);
+    public void addCall(CallData callData) {
+        Float cost = callCosts.get(callData.getCallType());
+        Float newCost = cost + this.callStrategy.calculateCost(callData);
+        callCosts.put(callData.getCallType(), newCost);
     }
-
-    // public void setLocalCallStrategy(LocalCall call) {
-    // this.localCallStrategy = call;
-    // }
-
-    // public void setNationalCallStrategy(LongDistanceCall call) {
-    // this.nationalCallStrategy = call;
-    // }
-
-    // public void setInternationalCallStrategy(LongDistanceCall call) {
-    // this.internationalCallStrategy = call;
-    // }
-
-    // public void addLocalCall(int duration) {
-    // localCost += localCallStrategy.calculateCost(duration);
-    // }
-
-    // public void addNationalCall(int duration, String state, HashMap<String,
-    // Float> stateRates) {
-    // nationalCost += nationalCallStrategy.calculateCost(duration, state,
-    // stateRates);
-    // }
-
-    // public void addInternationalCall(int duration, String country,
-    // HashMap<String, Float> countryRates) {
-    // internationalCost += internationalCallStrategy.calculateCost(duration,
-    // country, countryRates);
-    // }
 
     public void generateBill() {
 

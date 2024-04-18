@@ -3,15 +3,9 @@ package model;
 
 public class WeekDayPeakLocalCallCostStrategy implements CallStrategy {
 
-    public CallType callType = CallType.LOCAL;
-
     @Override
-    public float calculateCost(int duration) {
-        return (float) (duration * 0.2);
+    public float calculateCost(CallData callData) {
+        return (float) (callData.getDuration() * 0.2);
     }
 
-    @Override
-    public CallType getCallType() {
-        return callType;
-    }
 }

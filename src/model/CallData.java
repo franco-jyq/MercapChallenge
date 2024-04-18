@@ -7,10 +7,12 @@ public class CallData {
     int duration;
     String location;
     HashMap<String, Float> Rates;
+    Float rate;
 
-    public CallData(CallType callType, int duration) {
+    public CallData(CallType callType, int duration, Float rate) {
         this.callType = callType;
         this.duration = duration;
+        this.rate = rate;
     }
 
     public CallData(CallType callType, int duration, String location, HashMap<String, Float> Rates) {
@@ -24,8 +26,12 @@ public class CallData {
         return duration;
     }
 
-    public float getRate() {
+    public float getRegionRate() {
         return Rates.get(location);
+    }
+
+    public float getRate() {
+        return rate;
     }
 
     public CallType getCallType() {

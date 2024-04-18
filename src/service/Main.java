@@ -4,15 +4,12 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import model.MonthlyBill;
-import model.WeekDayOffPeakLocalCallCostStrategy;
-import model.WeekDayPeakLocalCallCostStrategy;
-import model.WeekEndLocalCallCostStrategy;
+import model.WeeklyCallCostStrategy;
+import model.RegionalCallCostStrategy;
 import model.CallData;
 import model.CallType;
-import model.RegionalCallCostStrategy;
 
 public class Main {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         MonthlyBill bill = new MonthlyBill(10); // Costo básico mensual
@@ -33,30 +30,29 @@ public class Main {
             System.out.println("----------------------------------------------");
 
             int callType = scanner.nextInt();
-            scanner.nextLine(); // Consumir el salto de línea
+            scanner.nextLine();
 
             switch (callType) {
                 case 1:
                     System.out.println("Enter the duration of the call (minutes):");
                     int duration = scanner.nextInt();
                     scanner.nextLine();
-
-                    bill.setCallStrategy(new WeekDayPeakLocalCallCostStrategy());
-                    bill.addCall(new CallData(CallType.LOCAL, duration));
+                    bill.setCallStrategy(new WeeklyCallCostStrategy());
+                    bill.addCall(new CallData(CallType.LOCAL, duration, Constants.WEEKDAY_PEAK_LOCAL_CALL_COST));
                     break;
                 case 2:
                     System.out.println("Enter the duration of the call (minutes):");
                     int duration1 = scanner.nextInt();
                     scanner.nextLine();
-                    bill.setCallStrategy(new WeekDayOffPeakLocalCallCostStrategy());
-                    bill.addCall(new CallData(CallType.LOCAL, duration1));
+                    bill.setCallStrategy(new WeeklyCallCostStrategy());
+                    bill.addCall(new CallData(CallType.LOCAL, duration1, Constants.WEEKDAY_OFF_PEAK_LOCAL_CALL_COST));
                     break;
                 case 3:
                     System.out.println("Enter the duration of the call (minutes):");
                     int duration2 = scanner.nextInt();
                     scanner.nextLine();
-                    bill.setCallStrategy(new WeekEndLocalCallCostStrategy());
-                    bill.addCall(new CallData(CallType.LOCAL, duration2));
+                    bill.setCallStrategy(new WeeklyCallCostStrategy());
+                    bill.addCall(new CallData(CallType.LOCAL, duration2, Constants.WEEKEND_LOCAL_CALL_COST));
                     break;
                 case 4:
                     System.out.println("Enter the duration of the call (minutes):");

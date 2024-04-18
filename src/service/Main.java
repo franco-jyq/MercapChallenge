@@ -39,21 +39,21 @@ public class Main {
                     System.out.println("Enter the duration of the call (minutes):");
                     int duration = scanner.nextInt();
                     scanner.nextLine();
-                    bill.setLocalCallStrategy(new WeekDayPeakLocalCallCostStrategy());
-                    bill.addLocalCall(duration);
+                    bill.setCallStrategy(new WeekDayPeakLocalCallCostStrategy());
+                    bill.addCall(duration);
                     break;
                 case 2:
                     System.out.println("Enter the duration of the call (minutes):");
                     int duration1 = scanner.nextInt();
                     scanner.nextLine();
-                    bill.setLocalCallStrategy(new WeekDayOffPeakLocalCallCostStrategy());
-                    bill.addLocalCall(duration1);
+                    bill.setCallStrategy(new WeekDayOffPeakLocalCallCostStrategy());
+                    bill.addCall(duration1);
                     break;
                 case 3:
                     System.out.println("Enter the duration of the call (minutes):");
                     int duration2 = scanner.nextInt();
-                    bill.setLocalCallStrategy(new WeekEndLocalCallCostStrategy());
-                    bill.addLocalCall(duration2);
+                    bill.setCallStrategy(new WeekEndLocalCallCostStrategy());
+                    bill.addCall(duration2);
                     break;
                 case 4:
                     System.out.println("Enter the duration of the call (minutes):");
@@ -61,8 +61,8 @@ public class Main {
                     scanner.nextLine();
                     System.out.println("Enter the country:");
                     String country = scanner.nextLine();
-                    bill.setInternationalCallStrategy(new InternationalCallCostStrategy());
-                    bill.addInternationalCall(duration3, country, countryRates);
+                    // bill.setInternationalCallStrategy(new InternationalCallCostStrategy());
+                    // bill.addInternationalCall(duration3, country, countryRates);
                     break;
                 case 5:
                     System.out.println("Enter the duration of the call (minutes):");
@@ -70,8 +70,8 @@ public class Main {
                     scanner.nextLine();
                     System.out.println("Enter the province:");
                     String province = scanner.nextLine();
-                    bill.setNationalCallStrategy(new NationalCallCostStrategy());
-                    bill.addNationalCall(duration4, province, stateRates);
+                    // bill.setNationalCallStrategy(new NationalCallCostStrategy());
+                    // bill.addNationalCall(duration4, province, stateRates);
                     break;
                 default:
                     System.out.println("Invalid Option.");

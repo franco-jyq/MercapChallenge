@@ -7,23 +7,23 @@ public class Call {
     ICallStrategy callStrategy;
     int duration;
     String location;
-    HashMap<String, Double> rates;
-    double rate;
+    HashMap<String, Double> regionalRates;
+    double localRate;
 
-    public Call(CallType callType, ICallStrategy callStrategy, int duration, double rate) {
+    public Call(CallType callType, ICallStrategy callStrategy, int duration, double localRate) {
         this.callType = callType;
         this.callStrategy = callStrategy;
         this.duration = duration;
-        this.rate = rate;
+        this.localRate = localRate;
     }
 
     public Call(CallType callType, ICallStrategy callStrategy, int duration, String location,
-            HashMap<String, Double> rates) {
+            HashMap<String, Double> regionalRates) {
         this.callType = callType;
         this.callStrategy = callStrategy;
         this.duration = duration;
         this.location = location;
-        this.rates = rates;
+        this.regionalRates = regionalRates;
     }
 
     public double getCost() {
@@ -35,11 +35,11 @@ public class Call {
     }
 
     public double getRegionRate() {
-        return rates.get(location);
+        return regionalRates.get(location);
     }
 
-    public double getRate() {
-        return rate;
+    public double getLocalRate() {
+        return localRate;
     }
 
     public CallType getCallType() {

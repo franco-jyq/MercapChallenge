@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import model.MonthlyBill;
-import model.WeeklyCallCostStrategy;
+import model.LocalCallCostStrategy;
 import model.RegionalCallCostStrategy;
 import model.Call;
 import model.CallType;
@@ -42,21 +42,21 @@ public class Main {
                     System.out.println("Enter the duration of the call (minutes):");
                     int duration = scanner.nextInt();
                     scanner.nextLine();
-                    bill.addCall(new Call(CallType.LOCAL, new WeeklyCallCostStrategy(), duration,
+                    bill.addCall(new Call(CallType.LOCAL, new LocalCallCostStrategy(), duration,
                             WEEKDAY_PEAK_LOCAL_CALL_COST));
                     break;
                 case 2:
                     System.out.println("Enter the duration of the call (minutes):");
                     int duration1 = scanner.nextInt();
                     scanner.nextLine();
-                    bill.addCall(new Call(CallType.LOCAL, new WeeklyCallCostStrategy(), duration1,
+                    bill.addCall(new Call(CallType.LOCAL, new LocalCallCostStrategy(), duration1,
                             WEEKDAY_OFF_PEAK_LOCAL_CALL_COST));
                     break;
                 case 3:
                     System.out.println("Enter the duration of the call (minutes):");
                     int duration2 = scanner.nextInt();
                     scanner.nextLine();
-                    bill.addCall(new Call(CallType.LOCAL, new WeeklyCallCostStrategy(), duration2,
+                    bill.addCall(new Call(CallType.LOCAL, new LocalCallCostStrategy(), duration2,
                             WEEKEND_LOCAL_CALL_COST));
                     break;
                 case 4:

@@ -19,3 +19,17 @@ requerimientos:
 ## Diagrama UML de la solución
 
 ![Untitled](Untitled.png)
+
+## Ejecución
+
+Compilación utilizando javac
+
+```
+javac src/**/*.java
+```
+
+Ejecución
+
+```
+java -cp src service.Main
+```

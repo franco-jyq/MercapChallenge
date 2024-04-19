@@ -16,4 +16,4 @@ y domingos cuesta 0,10 centavos el minuto
 5. Las **llamadas Nacionales** tienen un **costo** distinto **según** **la localidad** a la que se
 llame.
 
-![Untitled](MercapChallenge%20a41f2b0dbc77437485ffd5448fdb5eba/Untitled.png)
+![Untitled](MercapChallenge/Untitled.png)

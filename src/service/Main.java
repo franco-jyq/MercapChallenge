@@ -17,7 +17,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        MonthlyBill bill = new MonthlyBill(10); // Costo básico mensual
+        MonthlyBill bill = new MonthlyBill(10, "30/04/24"); // Costo básico mensual
         HashMap<String, Double> stateRates = new HashMap<String, Double>();
         stateRates.put("IOWA", (double) (0.2));
 

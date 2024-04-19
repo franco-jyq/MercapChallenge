@@ -1,6 +1,6 @@
 package model;
 
-public class RegionalCallCostStrategy implements CallStrategy {
+public class RegionalCallCostStrategy implements ICallStrategy {
 
     @Override
     public double calculateCost(Call call) {

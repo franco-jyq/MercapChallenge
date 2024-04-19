@@ -1,7 +1,5 @@
 package model;
 
-public interface CallStrategy {
-
+public interface ICallStrategy {
     double calculateCost(Call callData);
-
 }

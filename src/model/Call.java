@@ -4,20 +4,20 @@ import java.util.HashMap;
 
 public class Call {
     CallType callType;
+    ICallStrategy callStrategy;
     int duration;
     String location;
     HashMap<String, Double> rates;
     double rate;
-    CallStrategy callStrategy;
 
-    public Call(CallType callType, CallStrategy callStrategy, int duration, double rate) {
+    public Call(CallType callType, ICallStrategy callStrategy, int duration, double rate) {
         this.callType = callType;
         this.callStrategy = callStrategy;
         this.duration = duration;
         this.rate = rate;
     }
 
-    public Call(CallType callType, CallStrategy callStrategy, int duration, String location,
+    public Call(CallType callType, ICallStrategy callStrategy, int duration, String location,
             HashMap<String, Double> rates) {
         this.callType = callType;
         this.callStrategy = callStrategy;

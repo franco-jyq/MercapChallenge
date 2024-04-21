@@ -93,7 +93,7 @@ public class Main {
 
         scanner.close();
 
-        bill.generateBill();
+        System.out.println(bill.generateBill());
     }
 
 }

@@ -22,20 +22,21 @@ public class MonthlyBill {
         callCosts.put(call.getCallType(), newCost);
     }
 
-    public void generateBill() {
-
+    public String generateBill() {
         double localCost = callCosts.get(CallType.LOCAL);
         double nationalCost = callCosts.get(CallType.NATIONAL);
         double internationalCost = callCosts.get(CallType.INTERNATIONAL);
         double totalCost = basicMonthlyFee + localCost + nationalCost + internationalCost;
 
-        System.out.println("-----------------Monthly Bill-------------------");
-        System.out.printf("Date: %s\n", date);
-        System.out.printf("Monthly fee: %.2f\n", basicMonthlyFee);
-        System.out.printf("Local calls cost: %.2f\n", localCost);
-        System.out.printf("National calls cost: %.2f\n", nationalCost);
-        System.out.printf("International calls cost: %.2f\n", internationalCost);
-        System.out.printf("Total cost: %.2f\n", totalCost);
-        System.out.println("------------------------------------------------");
+        return String.format(
+                "-----------------Monthly Bill-------------------\n" +
+                        "Date: %s\n" +
+                        "Monthly fee: %.2f\n" +
+                        "Local calls cost: %.2f\n" +
+                        "National calls cost: %.2f\n" +
+                        "International calls cost: %.2f\n" +
+                        "Total cost: %.2f\n" +
+                        "------------------------------------------------\n",
+                date, basicMonthlyFee, localCost, nationalCost, internationalCost, totalCost);
     }
 }

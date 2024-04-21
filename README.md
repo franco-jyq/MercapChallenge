@@ -18,9 +18,15 @@ requerimientos:
 
 ## Diagrama UML de la solución
 
-![Untitled](Untitled.png)
+![Untitled](uml.png)
 
-## Ejecución
+## Ejecución con Docker
+
+```
+docker build -t billing-mercap . && docker run -it --rm billing-mercap
+```
+
+## Ejecución local
 
 Compilación utilizando javac
 

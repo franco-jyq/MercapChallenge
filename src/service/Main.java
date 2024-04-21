@@ -20,9 +20,11 @@ public class Main {
         MonthlyBill bill = new MonthlyBill(10, "30/04/24"); // Costo básico mensual
         HashMap<String, Double> stateRates = new HashMap<String, Double>();
         stateRates.put("IOWA", (double) (0.2));
+        stateRates.put("MENDOZA", (double) (0.3));
 
         HashMap<String, Double> countryRates = new HashMap<String, Double>();
         countryRates.put("US", (double) (0.5));
+        countryRates.put("ARG", (double) (0.9));
 
         while (true) {
             System.out.println("----------------------------------------------");

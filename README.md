@@ -18,7 +18,7 @@ requerimientos:
 
 ## Diagrama UML de la solución
 
-![Untitled](uml.png)
+![Uml diagram](uml.png)
 
 ## Ejecución con Docker
 

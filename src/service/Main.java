@@ -10,7 +10,6 @@ import model.Call;
 import model.CallType;
 
 public class Main {
-
     public static final double WEEKDAY_PEAK_LOCAL_CALL_COST = (double) 0.2;
     public static final double WEEKDAY_OFF_PEAK_LOCAL_CALL_COST = (double) 0.1;
     public static final double WEEKEND_LOCAL_CALL_COST = (double) 0.1;
@@ -42,42 +41,44 @@ public class Main {
             switch (callType) {
                 case 1:
                     System.out.println("Enter the duration of the call (minutes):");
-                    int duration = scanner.nextInt();
+                    double duration = scanner.nextInt();
                     scanner.nextLine();
-                    bill.addCall(new Call(CallType.LOCAL, new LocalCallCostStrategy(), duration,
-                            WEEKDAY_PEAK_LOCAL_CALL_COST));
+                    bill.addCallCost(new Call(CallType.LOCAL, new LocalCallCostStrategy(WEEKDAY_PEAK_LOCAL_CALL_COST),
+                            duration));
                     break;
                 case 2:
                     System.out.println("Enter the duration of the call (minutes):");
-                    int duration1 = scanner.nextInt();
+                    double duration1 = scanner.nextInt();
                     scanner.nextLine();
-                    bill.addCall(new Call(CallType.LOCAL, new LocalCallCostStrategy(), duration1,
-                            WEEKDAY_OFF_PEAK_LOCAL_CALL_COST));
+                    bill.addCallCost(
+                            new Call(CallType.LOCAL, new LocalCallCostStrategy(WEEKDAY_OFF_PEAK_LOCAL_CALL_COST),
+                                    duration1));
                     break;
                 case 3:
                     System.out.println("Enter the duration of the call (minutes):");
-                    int duration2 = scanner.nextInt();
+                    double duration2 = scanner.nextInt();
                     scanner.nextLine();
-                    bill.addCall(new Call(CallType.LOCAL, new LocalCallCostStrategy(), duration2,
-                            WEEKEND_LOCAL_CALL_COST));
+                    bill.addCallCost(
+                            new Call(CallType.LOCAL, new LocalCallCostStrategy(WEEKEND_LOCAL_CALL_COST), duration2));
                     break;
                 case 4:
                     System.out.println("Enter the duration of the call (minutes):");
-                    int duration3 = scanner.nextInt();
+                    double duration3 = scanner.nextInt();
                     scanner.nextLine();
-                    System.out.println("Enter the country:");
-                    String country = scanner.nextLine();
-                    bill.addCall(new Call(CallType.NATIONAL, new RegionalCallCostStrategy(), duration3, country,
-                            countryRates));
+                    System.out.println("Enter the country: (US/ARG)");
+                    String country = scanner.nextLine().toUpperCase();
+                    bill.addCallCost(new Call(CallType.NATIONAL, new RegionalCallCostStrategy(countryRates, country),
+                            duration3));
                     break;
                 case 5:
                     System.out.println("Enter the duration of the call (minutes):");
-                    int duration4 = scanner.nextInt();
+                    double duration4 = scanner.nextInt();
                     scanner.nextLine();
-                    System.out.println("Enter the province:");
-                    String province = scanner.nextLine();
-                    bill.addCall(new Call(CallType.INTERNATIONAL, new RegionalCallCostStrategy(), duration4, province,
-                            stateRates));
+                    System.out.println("Enter the province:(MENDOZA/IOWA)");
+                    String province = scanner.nextLine().toUpperCase();
+                    bill.addCallCost(
+                            new Call(CallType.INTERNATIONAL, new RegionalCallCostStrategy(stateRates, province),
+                                    duration4));
                     break;
                 default:
                     System.out.println("Invalid Option.");
@@ -94,6 +95,6 @@ public class Main {
         scanner.close();
 
         System.out.println(bill.generateBill());
-    }
 
+    }
 }

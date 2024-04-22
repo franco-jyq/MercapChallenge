@@ -16,7 +16,7 @@ public class MonthlyBill {
         this.callCosts.put(CallType.NATIONAL, (double) (0));
     }
 
-    public void addCall(Call call) {
+    public void addCallCost(Call call) {
         double cost = callCosts.get(call.getCallType());
         double newCost = cost + call.getCost();
         callCosts.put(call.getCallType(), newCost);

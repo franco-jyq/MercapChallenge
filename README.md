@@ -20,6 +20,18 @@ requerimientos:
 
 ![Uml diagram](uml.png)
 
+## Descripcion de la solución
+
+La solución propuesta se basa en el patrón de diseño strategy para calcular los costos de las llamadas telefónicas según el algoritmo que se necesite. Se separaron los tipos de llamadas en dos tipos de estrategias:
+
+- Las llamadas locales, implementadas en la clase LocalCallCostStrategy, que cubren los casos en los que para distintas franjas horarias y días se necesitan diferentes tarifas. Esta estrategia utiliza una tarifa fija que se multiplica por la duración de la llamada para calcular el costo.
+
+- Las llamadas regionales (nacionales e internacionales), implementadas en la clase RegionalCallCostStrategy, que manejan los casos en los que el costo de la llamada varía según la provincia o el país al que se llama. Esta estrategia utiliza un mapa de tarifas por región que se multiplica por la duración de la llamada para calcular el costo.
+
+Ambas estrategias implementan la interfaz ICallStrategy, que define un método calculateCost que toma la duración de la llamada y devuelve el costo de la llamada.
+
+De esta manera separamos las responsabilidades haciendo que cuando le pasamos una llamada a la factura con el metodo AddCallCost, la misma solo obtiene el tipo de llamada con el metodo getCallType para conocer a que campo atribuir el costo y finalmente al metodo getCost para que la llamada indique el costo de la misma.
+
 ## Ejecución con Docker
 
 ```
